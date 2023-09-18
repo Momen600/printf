@@ -45,7 +45,7 @@ int print_string(va_list types, char buffer[],
 	{
 		sti = "(null)";
 		if (precision >= 6)
-			str = "      ";
+			sti = "      ";
 	}
 
 	while (sti[length] != '\0')
@@ -67,7 +67,7 @@ int print_string(va_list types, char buffer[],
 		{
 			for (i = width - length; i > 0; i--)
 				write(1, " ", 1);
-			write(1, &str[0], length);
+			write(1, &sti[0], length);
 			return (width);
 		}
 	}
