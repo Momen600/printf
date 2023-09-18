@@ -34,21 +34,21 @@ int print_string(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	int length = 0, i;
-	char *stri = va_arg(types, char *);
+	char *sti = va_arg(types, char *);
 
 	UNUSED(buffer);
 	UNUSED(flags);
 	UNUSED(width);
 	UNUSED(precision);
 	UNUSED(size);
-	if (stri == NULL)
+	if (sti == NULL)
 	{
-		stri = "(null)";
+		sti = "(null)";
 		if (precision >= 6)
-			stri = "      ";
+			str = "      ";
 	}
 
-	while (stri[length] != '\0')
+	while (sti[length] != '\0')
 		length++;
 
 	if (precision >= 0 && precision < length)
@@ -58,7 +58,7 @@ int print_string(va_list types, char buffer[],
 	{
 		if (flags & F_MINUS)
 		{
-			write(1, &stri[0], length);
+			write(1, &sti[0], length);
 			for (i = width - length; i > 0; i--)
 				write(1, " ", 1);
 			return (width);
@@ -67,12 +67,12 @@ int print_string(va_list types, char buffer[],
 		{
 			for (i = width - length; i > 0; i--)
 				write(1, " ", 1);
-			write(1, &stri[0], length);
+			write(1, &str[0], length);
 			return (width);
 		}
 	}
 
-	return (write(1, stri, length));
+	return (write(1, sti, length));
 }
 /************************* PRINT PERCENT SIGN *************************/
 /**
